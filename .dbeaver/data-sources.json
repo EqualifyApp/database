@@ -1,0 +1,33 @@
+{
+	"folders": {
+		"Local": {}
+	},
+	"connections": {
+		"mysql8-18714b52b1e-903bb2c2a97af7b": {
+			"provider": "mysql-ee",
+			"driver": "mysql8",
+			"name": "localhost",
+			"save-password": true,
+			"folder": "Local",
+			"configuration": {
+				"host": "localhost",
+				"port": "8087",
+				"url": "jdbc:mysql://localhost:8087/",
+				"configurationType": "MANUAL",
+				"type": "dev",
+				"auth-model": "native"
+			}
+		}
+	},
+	"connection-types": {
+		"dev": {
+			"name": "Development",
+			"color": "255,255,255",
+			"description": "Regular development database",
+			"auto-commit": true,
+			"confirm-execute": false,
+			"confirm-data-change": false,
+			"auto-close-transactions": false
+		}
+	}
+}
