@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<diagram version="1" name="Equalify.erd">
+	<entities>
+		<data-source id="postgres-jdbc-18723b0bf08-80fb356266c39fc">
+			<entity id="1" name="domains" fq-name="meta.domains" order="0" x="550" y="112">
+				<path name="meta"/>
+				<path name="a11y"/>
+			</entity>
+			<entity id="2" name="org_types" fq-name="meta.org_types" order="1" x="1454" y="117">
+				<path name="meta"/>
+				<path name="a11y"/>
+			</entity>
+			<entity id="3" name="orgs" fq-name="meta.orgs" order="2" x="1016" y="98">
+				<path name="meta"/>
+				<path name="a11y"/>
+			</entity>
+			<entity id="4" name="urls" fq-name="meta.urls" order="3" x="24" y="78">
+				<path name="meta"/>
+				<path name="a11y"/>
+			</entity>
+			<entity id="5" name="items" fq-name="results.items" order="4" color-bg="204,192,184" x="640" y="562">
+				<path name="results"/>
+				<path name="a11y"/>
+			</entity>
+			<entity id="6" name="nodes" fq-name="results.nodes" order="5" color-bg="204,192,184" x="1096" y="542">
+				<path name="results"/>
+				<path name="a11y"/>
+			</entity>
+			<entity id="7" name="scans" fq-name="results.scans" order="6" color-bg="204,192,184" x="205" y="307">
+				<path name="results"/>
+				<path name="a11y"/>
+			</entity>
+		</data-source>
+	</entities>
+	<relations>
+		<relation name="urls_fk" fq-name="meta.urls.urls_fk" type="fk" pk-ref="1" fk-ref="4"/>
+		<relation name="scans_fk" fq-name="results.scans.scans_fk" type="fk" pk-ref="1" fk-ref="7"/>
+		<relation name="orgs_type_id_fkey" fq-name="meta.orgs.orgs_type_id_fkey" type="fk" pk-ref="2" fk-ref="3"/>
+		<relation name="domains_fk" fq-name="meta.domains.domains_fk" type="fk" pk-ref="3" fk-ref="1"/>
+		<relation name="orgs_parent_org_id_fkey" fq-name="meta.orgs.orgs_parent_org_id_fkey" type="fk" pk-ref="3" fk-ref="3"/>
+		<relation name="nodes_fk" fq-name="results.nodes.nodes_fk" type="fk" pk-ref="5" fk-ref="6"/>
+		<relation name="items_fk" fq-name="results.items.items_fk" type="fk" pk-ref="7" fk-ref="5"/>
+	</relations>
+</diagram>

@@ -1,0 +1,72 @@
+{
+	"5177c3e6-b199-4dd4-a4ac-b2dbe8aa6cfb": {
+		"task": "pgDatabaseBackup",
+		"label": "Backup A11y",
+		"description": "",
+		"createTime": "202303281917",
+		"updateTime": "202303281917",
+		"state": {
+			"project": "Equalify",
+			"dataSource": "postgres-jdbc-18723b0bf08-80fb356266c39fc",
+			"databaseObjects": [
+				"postgres-jdbc-18723b0bf08-80fb356266c39fc/a11y"
+			],
+			"clientHomeName": "PostgreSQL 15.2 (Homebrew",
+			"export.outputFilePattern": "dump-${database}-${timestamp}",
+			"export.outputFolder": "/Users/Shared/GitHub/Orgs/EqualifyApp/database",
+			"pg.format": "CUSTOM",
+			"pg.export.compression": "0",
+			"pg.export.encoding": "UTF-8",
+			"pg.export.showViews": "false",
+			"pg.export.useInserts": "false",
+			"pg.export.noPrivileges": "false",
+			"pg.export.noOwner": "false",
+			"pg.export.dropObjects": "false",
+			"pg.export.createDatabase": "true",
+			"exportObjects": [
+				{
+					"database": "postgres-jdbc-18723b0bf08-80fb356266c39fc/a11y",
+					"schemas": [
+						"meta",
+						"public",
+						"results",
+						"staging"
+					]
+				}
+			]
+		}
+	},
+	"45d7e167-11ed-4600-9352-ced90d5b3cc2": {
+		"task": "pgDatabaseBackupAll",
+		"label": "PROD_BackupA11y",
+		"description": "",
+		"createTime": "202303282226",
+		"updateTime": "202303282226",
+		"state": {
+			"project": "Equalify",
+			"dataSource": "postgres-jdbc-18723b0bf08-80fb356266c39fc",
+			"databaseObjects": [
+				"postgres-jdbc-18723b0bf08-80fb356266c39fc/a11y"
+			],
+			"clientHomeName": "PostgreSQL 15.2 (Homebrew",
+			"export.outputFilePattern": "dump-${database}-${timestamp}.sql",
+			"export.outputFolder": "/Users/Shared/GitHub/Orgs/EqualifyApp/database",
+			"pg.export.all.encoding": "UTF-8",
+			"pg.export.all.exportOnlyMetadata": "false",
+			"pg.export.all.exportOnlyGlobals": "false",
+			"pg.export.all.exportOnlyRoles": "false",
+			"pg.export.all.exportOnlyTablespaces": "false",
+			"pg.export.all.noPrivileges": "false",
+			"pg.export.all.noOwner": "false",
+			"pg.export.all.addRolesPasswords": "false",
+			"exportObjects.all": [
+				{
+					"datasource": "postgres-jdbc-18723b0bf08-80fb356266c39fc",
+					"databases": [
+						"a11y"
+					]
+				}
+			]
+		}
+	}
+}
