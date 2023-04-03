@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<diagram version="1" name="EqualifyPostgres">
+	<entities>
+		<data-source id="postgres-jdbc-18723b0bf08-80fb356266c39fc">
+			<entity id="1" name="actors" fq-name="events.actors">
+				<path name="events"/>
+				<path name="a11y"/>
+			</entity>
+			<entity id="2" name="crawls" fq-name="events.crawls">
+				<path name="events"/>
+				<path name="a11y"/>
+			</entity>
+			<entity id="3" name="status_types" fq-name="events.status_types">
+				<path name="events"/>
+				<path name="a11y"/>
+			</entity>
+			<entity id="4" name="bad_actors" fq-name="meta.bad_actors">
+				<path name="meta"/>
+				<path name="a11y"/>
+			</entity>
+			<entity id="5" name="domains" fq-name="meta.domains">
+				<path name="meta"/>
+				<path name="a11y"/>
+			</entity>
+			<entity id="6" name="matches" fq-name="meta.matches">
+				<path name="meta"/>
+				<path name="a11y"/>
+			</entity>
+			<entity id="7" name="org_types" fq-name="meta.org_types">
+				<path name="meta"/>
+				<path name="a11y"/>
+			</entity>
+			<entity id="8" name="orgs" fq-name="meta.orgs">
+				<path name="meta"/>
+				<path name="a11y"/>
+			</entity>
+			<entity id="9" name="sitemaps" fq-name="meta.sitemaps">
+				<path name="meta"/>
+				<path name="a11y"/>
+			</entity>
+			<entity id="10" name="urls" fq-name="meta.urls">
+				<path name="meta"/>
+				<path name="a11y"/>
+			</entity>
+			<entity id="11" name="user_agents" fq-name="meta.user_agents">
+				<path name="meta"/>
+				<path name="a11y"/>
+			</entity>
+			<entity id="12" name="crawls" fq-name="results.crawls">
+				<path name="results"/>
+				<path name="a11y"/>
+			</entity>
+			<entity id="13" name="items" fq-name="results.items">
+				<path name="results"/>
+				<path name="a11y"/>
+			</entity>
+			<entity id="14" name="nodes" fq-name="results.nodes">
+				<path name="results"/>
+				<path name="a11y"/>
+			</entity>
+			<entity id="15" name="offsite_links" fq-name="results.offsite_links">
+				<path name="results"/>
+				<path name="a11y"/>
+			</entity>
+			<entity id="16" name="problem_urls" fq-name="results.problem_urls">
+				<path name="results"/>
+				<path name="a11y"/>
+			</entity>
+			<entity id="17" name="scans" fq-name="results.scans">
+				<path name="results"/>
+				<path name="a11y"/>
+			</entity>
+			<entity id="18" name="subnodes" fq-name="results.subnodes">
+				<path name="results"/>
+				<path name="a11y"/>
+			</entity>
+			<entity id="19" name="urls" fq-name="results.urls">
+				<path name="results"/>
+				<path name="a11y"/>
+			</entity>
+			<entity id="20" name="bad_urls" fq-name="staging.bad_urls">
+				<path name="staging"/>
+				<path name="a11y"/>
+			</entity>
+			<entity id="21" name="doc_urls" fq-name="staging.doc_urls">
+				<path name="staging"/>
+				<path name="a11y"/>
+			</entity>
+			<entity id="22" name="image_urls" fq-name="staging.image_urls">
+				<path name="staging"/>
+				<path name="a11y"/>
+			</entity>
+			<entity id="23" name="offsite_links" fq-name="staging.offsite_links">
+				<path name="staging"/>
+				<path name="a11y"/>
+			</entity>
+			<entity id="24" name="urls" fq-name="staging.urls">
+				<path name="staging"/>
+				<path name="a11y"/>
+			</entity>
+		</data-source>
+	</entities>
+	<relations>
+		<relation name="crawls_fk_actor" fq-name="events.crawls.crawls_fk_actor" type="fk" pk-ref="1" fk-ref="2"/>
+		<relation name="crawls_fk_status" fq-name="events.crawls.crawls_fk_status" type="fk" pk-ref="3" fk-ref="2"/>
+		<relation name="sitemaps_fk_domain" fq-name="meta.sitemaps.sitemaps_fk_domain" type="fk" pk-ref="5" fk-ref="9"/>
+		<relation name="urls_fk" fq-name="meta.urls.urls_fk" type="fk" pk-ref="5" fk-ref="10"/>
+		<relation name="orgs_fk" fq-name="meta.orgs.orgs_fk" type="fk" pk-ref="7" fk-ref="8"/>
+		<relation name="domains_fk" fq-name="meta.domains.domains_fk" type="fk" pk-ref="8" fk-ref="5"/>
+		<relation name="orgs_parent_org_id_fkey" fq-name="meta.orgs.orgs_parent_org_id_fkey" type="fk" pk-ref="8" fk-ref="8"/>
+		<relation name="sitemaps_fk" fq-name="meta.sitemaps.sitemaps_fk" type="fk" pk-ref="9" fk-ref="9"/>
+		<relation name="urls_fk-crawl_created" fq-name="meta.urls.&quot;urls_fk-crawl_created&quot;" type="fk" pk-ref="12" fk-ref="10"/>
+		<relation name="urls_fk-crawl_recent" fq-name="meta.urls.&quot;urls_fk-crawl_recent&quot;" type="fk" pk-ref="12" fk-ref="10"/>
+		<relation name="doc_urls_fk" fq-name="staging.doc_urls.doc_urls_fk" type="fk" pk-ref="12" fk-ref="21"/>
+		<relation name="urls_fk" fq-name="staging.urls.urls_fk" type="fk" pk-ref="12" fk-ref="24"/>
+		<relation name="problem_urls_fk" fq-name="results.problem_urls.problem_urls_fk" type="fk" pk-ref="24" fk-ref="16"/>
+		<relation name="scans_fk" fq-name="results.scans.scans_fk" type="fk" pk-ref="24" fk-ref="17"/>
+	</relations>
+</diagram>
