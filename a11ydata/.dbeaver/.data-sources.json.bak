@@ -1,0 +1,44 @@
+{
+	"folders": {},
+	"connections": {
+		"postgres-jdbc-18757bc59b9-7f376927937bd3cd": {
+			"provider": "postgresql",
+			"driver": "postgres-jdbc",
+			"name": "a11ydata",
+			"description": "Postgres for CivicActions A11yData Project",
+			"save-password": true,
+			"configuration": {
+				"host": "rightstuff.local",
+				"port": "5432",
+				"database": "a11ydata",
+				"url": "jdbc:postgresql://rightstuff.local:5432/a11ydata",
+				"configurationType": "MANUAL",
+				"home": "PostgreSQL 15.2 (Homebrew",
+				"type": "test",
+				"provider-properties": {
+					"@dbeaver-show-non-default-db@": "false",
+					"@dbeaver-show-template-db@": "false",
+					"@dbeaver-show-unavailable-db@": "false",
+					"show-database-statistics": "false",
+					"@dbeaver-read-all-data-types-db@": "false",
+					"read-keys-with-columns": "false",
+					"@dbeaver-use-prepared-statements-db@": "false",
+					"postgresql.dd.plain.string": "false",
+					"postgresql.dd.tag.string": "false"
+				},
+				"auth-model": "native"
+			}
+		}
+	},
+	"connection-types": {
+		"test": {
+			"name": "Test",
+			"color": "org.jkiss.dbeaver.color.connectionType.qa.background",
+			"description": "Test (QA) database",
+			"auto-commit": true,
+			"confirm-execute": false,
+			"confirm-data-change": true,
+			"auto-close-transactions": false
+		}
+	}
+}
