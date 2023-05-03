@@ -17,6 +17,33 @@
 				"type": "dev",
 				"auth-model": "native"
 			}
+		},
+		"postgres-jdbc-18723b0bf08-80fb356266c39fc": {
+			"provider": "postgresql",
+			"driver": "postgres-jdbc",
+			"name": "Equalify",
+			"save-password": true,
+			"configuration": {
+				"host": "localhost",
+				"port": "8432",
+				"database": "postgres",
+				"url": "jdbc:postgresql://localhost:8432/postgres",
+				"configurationType": "MANUAL",
+				"home": "PostgreSQL 15.2 (Homebrew",
+				"type": "dev",
+				"provider-properties": {
+					"@dbeaver-show-non-default-db@": "true",
+					"@dbeaver-show-template-db@": "false",
+					"@dbeaver-show-unavailable-db@": "false",
+					"show-database-statistics": "false",
+					"@dbeaver-read-all-data-types-db@": "false",
+					"read-keys-with-columns": "false",
+					"@dbeaver-use-prepared-statements-db@": "false",
+					"postgresql.dd.plain.string": "false",
+					"postgresql.dd.tag.string": "false"
+				},
+				"auth-model": "native"
+			}
 		}
 	},
 	"connection-types": {

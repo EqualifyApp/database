@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<diagram version="1" name="A11yData">
+	<entities>
+		<data-source id="postgres-jdbc-18757bc59b9-7f376927937bd3cd">
+			<entity id="1" name="crawls" fq-name="events.crawls">
+				<path name="events"/>
+				<path name="a11ydata"/>
+			</entity>
+			<entity id="2" name="scans_axe" fq-name="events.scans_axe">
+				<path name="events"/>
+				<path name="a11ydata"/>
+			</entity>
+			<entity id="3" name="scans_tech" fq-name="events.scans_tech">
+				<path name="events"/>
+				<path name="a11ydata"/>
+			</entity>
+			<entity id="4" name="a11y_disabilities" fq-name="refs.a11y_disabilities">
+				<path name="refs"/>
+				<path name="a11ydata"/>
+			</entity>
+			<entity id="5" name="a11y_rules" fq-name="refs.a11y_rules">
+				<path name="refs"/>
+				<path name="a11ydata"/>
+			</entity>
+			<entity id="6" name="a11y_wcag" fq-name="refs.a11y_wcag">
+				<path name="refs"/>
+				<path name="a11ydata"/>
+			</entity>
+			<entity id="7" name="axe_impact" fq-name="refs.axe_impact">
+				<path name="refs"/>
+				<path name="a11ydata"/>
+			</entity>
+			<entity id="8" name="axe_item_type" fq-name="refs.axe_item_type">
+				<path name="refs"/>
+				<path name="a11ydata"/>
+			</entity>
+			<entity id="9" name="axe_meta" fq-name="refs.axe_meta">
+				<path name="refs"/>
+				<path name="a11ydata"/>
+			</entity>
+			<entity id="10" name="axe_node_type" fq-name="refs.axe_node_type">
+				<path name="refs"/>
+				<path name="a11ydata"/>
+			</entity>
+			<entity id="11" name="org_types" fq-name="refs.org_types">
+				<path name="refs"/>
+				<path name="a11ydata"/>
+			</entity>
+			<entity id="12" name="tech_apps" fq-name="refs.tech_apps">
+				<path name="refs"/>
+				<path name="a11ydata"/>
+			</entity>
+			<entity id="13" name="tech_apps_cats" fq-name="refs.tech_apps_cats">
+				<path name="refs"/>
+				<path name="a11ydata"/>
+			</entity>
+			<entity id="14" name="tech_cats" fq-name="refs.tech_cats">
+				<path name="refs"/>
+				<path name="a11ydata"/>
+			</entity>
+			<entity id="15" name="tech_cats_groups" fq-name="refs.tech_cats_groups">
+				<path name="refs"/>
+				<path name="a11ydata"/>
+			</entity>
+			<entity id="16" name="tech_groups" fq-name="refs.tech_groups">
+				<path name="refs"/>
+				<path name="a11ydata"/>
+			</entity>
+			<entity id="17" name="url_types" fq-name="refs.url_types">
+				<path name="refs"/>
+				<path name="a11ydata"/>
+			</entity>
+			<entity id="18" name="domains" fq-name="targets.domains">
+				<path name="targets"/>
+				<path name="a11ydata"/>
+			</entity>
+			<entity id="19" name="sitemaps" fq-name="targets.sitemaps">
+				<path name="targets"/>
+				<path name="a11ydata"/>
+			</entity>
+			<entity id="20" name="urls" fq-name="targets.urls">
+				<path name="targets"/>
+				<path name="a11ydata"/>
+			</entity>
+			<entity id="21" name="axe_items" fq-name="results.axe_items">
+				<path name="results"/>
+				<path name="a11ydata"/>
+			</entity>
+			<entity id="22" name="axe_nodes" fq-name="results.axe_nodes">
+				<path name="results"/>
+				<path name="a11ydata"/>
+			</entity>
+			<entity id="23" name="axe_subnodes" fq-name="results.axe_subnodes">
+				<path name="results"/>
+				<path name="a11ydata"/>
+			</entity>
+			<entity id="24" name="tech_checks" fq-name="results.tech_checks">
+				<path name="results"/>
+				<path name="a11ydata"/>
+			</entity>
+			<entity id="25" name="entities" fq-name="orgs.entities">
+				<path name="orgs"/>
+				<path name="a11ydata"/>
+			</entity>
+			<entity id="26" name="fed_branches" fq-name="orgs.fed_branches">
+				<path name="orgs"/>
+				<path name="a11ydata"/>
+			</entity>
+			<entity id="27" name="function" fq-name="orgs.&quot;function&quot;">
+				<path name="orgs"/>
+				<path name="a11ydata"/>
+			</entity>
+			<entity id="28" name="region" fq-name="orgs.region">
+				<path name="orgs"/>
+				<path name="a11ydata"/>
+			</entity>
+			<entity id="29" name="type" fq-name="orgs.&quot;type&quot;">
+				<path name="orgs"/>
+				<path name="a11ydata"/>
+			</entity>
+		</data-source>
+	</entities>
+	<relations>
+		<relation name="axe_items_fk_impact" fq-name="results.axe_items.axe_items_fk_impact" type="fk" pk-ref="7" fk-ref="21"/>
+		<relation name="axe_nodes_fk_impact" fq-name="results.axe_nodes.axe_nodes_fk_impact" type="fk" pk-ref="7" fk-ref="22"/>
+		<relation name="axe_subnodes_fk_impact" fq-name="results.axe_subnodes.axe_subnodes_fk_impact" type="fk" pk-ref="7" fk-ref="23"/>
+		<relation name="axe_items_fk_type" fq-name="results.axe_items.axe_items_fk_type" type="fk" pk-ref="8" fk-ref="21"/>
+		<relation name="scans_axe_fk_axe_meta" fq-name="events.scans_axe.scans_axe_fk_axe_meta" type="fk" pk-ref="9" fk-ref="2"/>
+		<relation name="axe_subnodes_fk_node_type" fq-name="results.axe_subnodes.axe_subnodes_fk_node_type" type="fk" pk-ref="10" fk-ref="23"/>
+		<relation name="tech_apps_cats_tech_app_id_fkey" fq-name="refs.tech_apps_cats.tech_apps_cats_tech_app_id_fkey" type="fk" pk-ref="12" fk-ref="13"/>
+		<relation name="tech_apps_cats_tech_cat_id_fkey" fq-name="refs.tech_apps_cats.tech_apps_cats_tech_cat_id_fkey" type="fk" pk-ref="14" fk-ref="13"/>
+		<relation name="tech_cats_groups_fk_new" fq-name="refs.tech_cats_groups.tech_cats_groups_fk_new" type="fk" pk-ref="14" fk-ref="15"/>
+		<relation name="tech_cats_groups_fk_group_id" fq-name="refs.tech_cats_groups.tech_cats_groups_fk_group_id" type="fk" pk-ref="16" fk-ref="15"/>
+		<relation name="urls_fk_domain" fq-name="targets.urls.urls_fk_domain" type="fk" pk-ref="18" fk-ref="20"/>
+		<relation name="sitemaps_fk_domain_id" fq-name="targets.sitemaps.sitemaps_fk_domain_id" type="fk" pk-ref="20" fk-ref="19"/>
+		<relation name="domains_fk" fq-name="targets.domains.domains_fk" type="fk" pk-ref="25" fk-ref="18"/>
+	</relations>
+</diagram>

@@ -31,8 +31,69 @@
 				"configurationType": "MANUAL",
 				"home": "PostgreSQL 15.2 (Homebrew",
 				"type": "dev",
-				"provider-properties": {},
+				"provider-properties": {
+					"@dbeaver-show-non-default-db@": "true",
+					"@dbeaver-show-template-db@": "false",
+					"@dbeaver-show-unavailable-db@": "false",
+					"show-database-statistics": "false",
+					"@dbeaver-read-all-data-types-db@": "false",
+					"read-keys-with-columns": "false",
+					"@dbeaver-use-prepared-statements-db@": "false",
+					"postgresql.dd.plain.string": "false",
+					"postgresql.dd.tag.string": "false"
+				},
 				"auth-model": "native"
+			}
+		},
+		"postgres-jdbc-18757af8569-5415b2afd3243e7c": {
+			"provider": "postgresql",
+			"driver": "postgres-jdbc",
+			"name": "RightStuff Postgres",
+			"save-password": true,
+			"configuration": {
+				"host": "rightstuff.local",
+				"port": "5432",
+				"database": "postgres",
+				"url": "jdbc:postgresql://rightstuff.local:5432/postgres",
+				"configurationType": "MANUAL",
+				"home": "PostgreSQL 15.2 (Homebrew",
+				"type": "dev",
+				"provider-properties": {
+					"@dbeaver-show-non-default-db@": "true",
+					"@dbeaver-show-template-db@": "false",
+					"@dbeaver-show-unavailable-db@": "false",
+					"show-database-statistics": "false",
+					"@dbeaver-read-all-data-types-db@": "false",
+					"read-keys-with-columns": "false",
+					"@dbeaver-use-prepared-statements-db@": "false",
+					"postgresql.dd.plain.string": "false",
+					"postgresql.dd.tag.string": "false"
+				},
+				"auth-model": "native"
+			}
+		}
+	},
+	"virtual-models": {
+		"postgres-jdbc-18723b0bf08-80fb356266c39fc": {
+			"a11y": {
+				"meta": {
+					":domains": {
+						"properties": {
+							"erd.diagram.state": {
+								"serialized": "\u003cdiagram version\u003d\"1\" name\u003d\"empty\" time\u003d\"202304061253\"\u003e\u003centities\u003e\u003cdata-source id\u003d\"postgres-jdbc-18723b0bf08-80fb356266c39fc\"\u003e\u003centity id\u003d\"1\" name\u003d\"domains\" fq-name\u003d\"meta.domains\" order\u003d\"0\" color-bg\u003d\"255,128,64\" x\u003d\"656\" y\u003d\"257\"\u003e\u003cpath name\u003d\"meta\"/\u003e\u003cpath name\u003d\"a11y\"/\u003e\u003c/entity\u003e\u003centity id\u003d\"2\" name\u003d\"orgs\" fq-name\u003d\"meta.orgs\" order\u003d\"1\" x\u003d\"1205\" y\u003d\"250\"\u003e\u003cpath name\u003d\"meta\"/\u003e\u003cpath name\u003d\"a11y\"/\u003e\u003c/entity\u003e\u003centity id\u003d\"3\" name\u003d\"urls\" fq-name\u003d\"meta.urls\" order\u003d\"2\" x\u003d\"20\" y\u003d\"20\"\u003e\u003cpath name\u003d\"meta\"/\u003e\u003cpath name\u003d\"a11y\"/\u003e\u003c/entity\u003e\u003centity id\u003d\"4\" name\u003d\"sitemaps\" fq-name\u003d\"meta.sitemaps\" order\u003d\"3\" x\u003d\"20\" y\u003d\"292\"\u003e\u003cpath name\u003d\"meta\"/\u003e\u003cpath name\u003d\"a11y\"/\u003e\u003c/entity\u003e\u003centity id\u003d\"5\" name\u003d\"urls\" fq-name\u003d\"staging.urls\" order\u003d\"4\" color-bg\u003d\"204,192,184\" border-width\u003d\"3\" x\u003d\"552\" y\u003d\"626\"\u003e\u003cpath name\u003d\"staging\"/\u003e\u003cpath name\u003d\"a11y\"/\u003e\u003c/entity\u003e\u003c/data-source\u003e\u003c/entities\u003e\u003crelations\u003e\u003crelation name\u003d\"urls_fk\" fq-name\u003d\"meta.urls.urls_fk\" type\u003d\"fk\" pk-ref\u003d\"1\" fk-ref\u003d\"3\"/\u003e\u003crelation name\u003d\"sitemaps_fk_domain\" fq-name\u003d\"meta.sitemaps.sitemaps_fk_domain\" type\u003d\"fk\" pk-ref\u003d\"1\" fk-ref\u003d\"4\"/\u003e\u003crelation name\u003d\"urls_fk_domain_id\" fq-name\u003d\"staging.urls.urls_fk_domain_id\" type\u003d\"fk\" pk-ref\u003d\"1\" fk-ref\u003d\"5\"/\u003e\u003crelation name\u003d\"domains_fk\" fq-name\u003d\"meta.domains.domains_fk\" type\u003d\"fk\" pk-ref\u003d\"2\" fk-ref\u003d\"1\"/\u003e\u003crelation name\u003d\"orgs_parent_org_id_fkey\" fq-name\u003d\"meta.orgs.orgs_parent_org_id_fkey\" type\u003d\"fk\" pk-ref\u003d\"2\" fk-ref\u003d\"2\"\u003e\u003cbend type\u003d\"rel\" x\u003d\"1534\" y\u003d\"455\"/\u003e\u003cbend type\u003d\"rel\" x\u003d\"1336\" y\u003d\"507\"/\u003e\u003c/relation\u003e\u003crelation name\u003d\"sitemaps_fk\" fq-name\u003d\"meta.sitemaps.sitemaps_fk\" type\u003d\"fk\" pk-ref\u003d\"4\" fk-ref\u003d\"4\"\u003e\u003cbend type\u003d\"rel\" x\u003d\"612\" y\u003d\"495\"/\u003e\u003cbend type\u003d\"rel\" x\u003d\"256\" y\u003d\"546\"/\u003e\u003c/relation\u003e\u003c/relations\u003e\u003c/diagram\u003e"
+							}
+						}
+					}
+				},
+				"results": {
+					":items": {
+						"properties": {
+							"erd.diagram.state": {
+								"serialized": "\u003cdiagram version\u003d\"1\" name\u003d\"empty\" time\u003d\"202304061259\"\u003e\u003centities\u003e\u003cdata-source id\u003d\"postgres-jdbc-18723b0bf08-80fb356266c39fc\"\u003e\u003centity id\u003d\"1\" name\u003d\"items\" fq-name\u003d\"results.items\" order\u003d\"0\" color-bg\u003d\"255,128,64\" border-width\u003d\"3\" x\u003d\"131\" y\u003d\"117\"\u003e\u003cpath name\u003d\"results\"/\u003e\u003cpath name\u003d\"a11y\"/\u003e\u003c/entity\u003e\u003centity id\u003d\"2\" name\u003d\"scans\" fq-name\u003d\"results.scans\" order\u003d\"1\" x\u003d\"569\" y\u003d\"41\"\u003e\u003cpath name\u003d\"results\"/\u003e\u003cpath name\u003d\"a11y\"/\u003e\u003c/entity\u003e\u003c/data-source\u003e\u003c/entities\u003e\u003crelations\u003e\u003crelation name\u003d\"items_fk\" fq-name\u003d\"results.items.items_fk\" type\u003d\"fk\" pk-ref\u003d\"2\" fk-ref\u003d\"1\"/\u003e\u003c/relations\u003e\u003c/diagram\u003e"
+							}
+						}
+					}
+				}
 			}
 		}
 	},

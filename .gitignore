@@ -1,2 +1,7 @@
 .DS_Store
 .nova
+dumps/*
+
+a11ydata/Scripts/*
+Scripts/*
+inits/*

@@ -35,6 +35,47 @@
 			}
 		}
 	},
+	"virtual-models": {
+		"postgres-jdbc-18757bc59b9-7f376927937bd3cd": {
+			"a11ydata": {
+				"ref": {
+					":tech_cats_groups": {
+						"properties": {
+							"erd.diagram.state": {
+								"serialized": "\u003cdiagram version\u003d\"1\" name\u003d\"empty\" time\u003d\"202304062304\"\u003e\u003centities\u003e\u003cdata-source id\u003d\"postgres-jdbc-18757bc59b9-7f376927937bd3cd\"\u003e\u003centity id\u003d\"1\" name\u003d\"tech_cats_groups\" fq-name\u003d\"\u0026quot;ref\u0026quot;.tech_cats_groups\" order\u003d\"0\" color-bg\u003d\"255,128,64\" x\u003d\"200\" y\u003d\"78\"\u003e\u003cpath name\u003d\"ref\"/\u003e\u003cpath name\u003d\"a11ydata\"/\u003e\u003c/entity\u003e\u003centity id\u003d\"2\" name\u003d\"tech_cats\" fq-name\u003d\"\u0026quot;ref\u0026quot;.tech_cats\" order\u003d\"1\" border-width\u003d\"3\" x\u003d\"81\" y\u003d\"313\"\u003e\u003cpath name\u003d\"ref\"/\u003e\u003cpath name\u003d\"a11ydata\"/\u003e\u003c/entity\u003e\u003centity id\u003d\"3\" name\u003d\"tech_groups\" fq-name\u003d\"\u0026quot;ref\u0026quot;.tech_groups\" order\u003d\"2\" x\u003d\"520\" y\u003d\"165\"\u003e\u003cpath name\u003d\"ref\"/\u003e\u003cpath name\u003d\"a11ydata\"/\u003e\u003c/entity\u003e\u003c/data-source\u003e\u003c/entities\u003e\u003crelations\u003e\u003crelation name\u003d\"tech_cats_groups_fk_new\" fq-name\u003d\"\u0026quot;ref\u0026quot;.tech_cats_groups.tech_cats_groups_fk_new\" type\u003d\"fk\" pk-ref\u003d\"2\" fk-ref\u003d\"1\"/\u003e\u003crelation name\u003d\"tech_cats_groups_fk_group_id\" fq-name\u003d\"\u0026quot;ref\u0026quot;.tech_cats_groups.tech_cats_groups_fk_group_id\" type\u003d\"fk\" pk-ref\u003d\"3\" fk-ref\u003d\"1\"/\u003e\u003c/relations\u003e\u003c/diagram\u003e"
+							}
+						}
+					}
+				},
+				"results": {
+					":axe_items": {
+						"properties": {
+							"erd.diagram.state": {
+								"serialized": "\u003cdiagram version\u003d\"1\" name\u003d\"empty\" time\u003d\"202304071716\"\u003e\u003centities\u003e\u003cdata-source id\u003d\"postgres-jdbc-18757bc59b9-7f376927937bd3cd\"\u003e\u003centity id\u003d\"1\" name\u003d\"axe_items\" fq-name\u003d\"results.axe_items\" order\u003d\"0\" color-bg\u003d\"255,128,64\" x\u003d\"7\" y\u003d\"223\"\u003e\u003cpath name\u003d\"results\"/\u003e\u003cpath name\u003d\"a11ydata\"/\u003e\u003c/entity\u003e\u003centity id\u003d\"2\" name\u003d\"urls\" fq-name\u003d\"targets.urls\" order\u003d\"1\" color-bg\u003d\"204,192,184\" x\u003d\"764\" y\u003d\"257\"\u003e\u003cpath name\u003d\"targets\"/\u003e\u003cpath name\u003d\"a11ydata\"/\u003e\u003c/entity\u003e\u003centity id\u003d\"3\" name\u003d\"scans_axe\" fq-name\u003d\"events.scans_axe\" order\u003d\"2\" color-bg\u003d\"228,255,181\" x\u003d\"326\" y\u003d\"20\"\u003e\u003cpath name\u003d\"events\"/\u003e\u003cpath name\u003d\"a11ydata\"/\u003e\u003c/entity\u003e\u003c/data-source\u003e\u003c/entities\u003e\u003crelations\u003e\u003crelation name\u003d\"axe_items_fk\" fq-name\u003d\"results.axe_items.axe_items_fk\" type\u003d\"fk\" pk-ref\u003d\"2\" fk-ref\u003d\"1\"/\u003e\u003crelation name\u003d\"scans_axe_fk_url_id\" fq-name\u003d\"events.scans_axe.scans_axe_fk_url_id\" type\u003d\"fk\" pk-ref\u003d\"2\" fk-ref\u003d\"3\"/\u003e\u003crelation name\u003d\"axe_items_fk_1\" fq-name\u003d\"results.axe_items.axe_items_fk_1\" type\u003d\"fk\" pk-ref\u003d\"3\" fk-ref\u003d\"1\"/\u003e\u003c/relations\u003e\u003c/diagram\u003e"
+							}
+						}
+					},
+					":axe_nodes": {
+						"properties": {
+							"erd.diagram.state": {
+								"serialized": "\u003cdiagram version\u003d\"1\" name\u003d\"empty\" time\u003d\"202304071726\"\u003e\u003centities\u003e\u003cdata-source id\u003d\"postgres-jdbc-18757bc59b9-7f376927937bd3cd\"\u003e\u003centity id\u003d\"1\" name\u003d\"axe_nodes\" fq-name\u003d\"results.axe_nodes\" order\u003d\"0\" color-bg\u003d\"255,128,64\" border-width\u003d\"3\" x\u003d\"11\" y\u003d\"169\"\u003e\u003cpath name\u003d\"results\"/\u003e\u003cpath name\u003d\"a11ydata\"/\u003e\u003c/entity\u003e\u003centity id\u003d\"2\" name\u003d\"urls\" fq-name\u003d\"targets.urls\" order\u003d\"1\" color-bg\u003d\"204,192,184\" x\u003d\"736\" y\u003d\"195\"\u003e\u003cpath name\u003d\"targets\"/\u003e\u003cpath name\u003d\"a11ydata\"/\u003e\u003c/entity\u003e\u003centity id\u003d\"3\" name\u003d\"scans_axe\" fq-name\u003d\"events.scans_axe\" order\u003d\"2\" color-bg\u003d\"228,255,181\" x\u003d\"326\" y\u003d\"20\"\u003e\u003cpath name\u003d\"events\"/\u003e\u003cpath name\u003d\"a11ydata\"/\u003e\u003c/entity\u003e\u003c/data-source\u003e\u003c/entities\u003e\u003crelations\u003e\u003crelation name\u003d\"axe_nodes_fk\" fq-name\u003d\"results.axe_nodes.axe_nodes_fk\" type\u003d\"fk\" pk-ref\u003d\"2\" fk-ref\u003d\"1\"/\u003e\u003crelation name\u003d\"scans_axe_fk_url_id\" fq-name\u003d\"events.scans_axe.scans_axe_fk_url_id\" type\u003d\"fk\" pk-ref\u003d\"2\" fk-ref\u003d\"3\"/\u003e\u003crelation name\u003d\"axe_nodes_fk_scan_event_id\" fq-name\u003d\"results.axe_nodes.axe_nodes_fk_scan_event_id\" type\u003d\"fk\" pk-ref\u003d\"3\" fk-ref\u003d\"1\"/\u003e\u003c/relations\u003e\u003c/diagram\u003e"
+							}
+						}
+					}
+				},
+				"processing": {
+					":axe_urls": {
+						"properties": {
+							"erd.diagram.state": {
+								"serialized": "\u003cdiagram version\u003d\"1\" name\u003d\"empty\" time\u003d\"202304201301\"\u003e\u003centities\u003e\u003cdata-source id\u003d\"postgres-jdbc-18757bc59b9-7f376927937bd3cd\"\u003e\u003centity id\u003d\"1\" name\u003d\"axe_urls\" fq-name\u003d\"processing.axe_urls\" order\u003d\"0\" color-bg\u003d\"255,128,64\" x\u003d\"238\" y\u003d\"476\"\u003e\u003cpath name\u003d\"processing\"/\u003e\u003cpath name\u003d\"a11ydata\"/\u003e\u003c/entity\u003e\u003centity id\u003d\"2\" name\u003d\"urls\" fq-name\u003d\"targets.urls\" order\u003d\"1\" color-bg\u003d\"204,192,184\" border-width\u003d\"3\" x\u003d\"908\" y\u003d\"245\"\u003e\u003cpath name\u003d\"targets\"/\u003e\u003cpath name\u003d\"a11ydata\"/\u003e\u003c/entity\u003e\u003centity id\u003d\"3\" name\u003d\"uppies_urls\" fq-name\u003d\"processing.uppies_urls\" order\u003d\"2\" x\u003d\"554\" y\u003d\"48\"\u003e\u003cpath name\u003d\"processing\"/\u003e\u003cpath name\u003d\"a11ydata\"/\u003e\u003c/entity\u003e\u003c/data-source\u003e\u003c/entities\u003e\u003crelations\u003e\u003crelation name\u003d\"axe_urls_fk_3\" fq-name\u003d\"processing.axe_urls.axe_urls_fk_3\" type\u003d\"fk\" pk-ref\u003d\"2\" fk-ref\u003d\"1\"/\u003e\u003crelation name\u003d\"axe_urls_fk_url_id\" fq-name\u003d\"processing.axe_urls.axe_urls_fk_url_id\" type\u003d\"fk\" pk-ref\u003d\"2\" fk-ref\u003d\"1\"/\u003e\u003crelation name\u003d\"uppies_urls_fk\" fq-name\u003d\"processing.uppies_urls.uppies_urls_fk\" type\u003d\"fk\" pk-ref\u003d\"2\" fk-ref\u003d\"3\"/\u003e\u003crelation name\u003d\"uppies_urls_fk_1\" fq-name\u003d\"processing.uppies_urls.uppies_urls_fk_1\" type\u003d\"fk\" pk-ref\u003d\"2\" fk-ref\u003d\"3\"/\u003e\u003c/relations\u003e\u003c/diagram\u003e"
+							}
+						},
+						"constraints": {}
+					}
+				}
+			}
+		}
+	},
 	"connection-types": {
 		"dev": {
 			"name": "Development",
