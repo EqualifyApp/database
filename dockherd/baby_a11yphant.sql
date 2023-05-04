@@ -42,7 +42,7 @@ CREATE SCHEMA results AUTHORIZATION a11ydata;
             "domain" varchar NOT NULL, -- Unique domain name
             active bool NULL, -- Should we analyze this domain?
             org_id int4 NULL, -- Corresponding Entity ID
-            CONSTRAINT domains_pk_id PRIMARY KEY (id)   -- Removed org_id foreign key
+            CONSTRAINT domains_pk_id PRIMARY KEY (id),
             CONSTRAINT domains_un UNIQUE (domain)
         );
 
