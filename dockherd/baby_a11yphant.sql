@@ -12,9 +12,8 @@ CREATE SCHEMA results AUTHORIZATION a11ydata;
 -- Create & Grant Users
     -- Grafana Database User
     CREATE USER grafanareader WITH PASSWORD 'super_grafana_password';
-        GRANT USAGE ON ALL SCHEMAS IN DATABASE a11ydata TO grafanareader;
+        GRANT USAGE ON SCHEMA axe, targets, events, orgs, refs, results TO grafanareader;
         GRANT SELECT ON ALL TABLES IN SCHEMA axe, targets, events, orgs, refs, results TO grafanareader;
-
 
 
 -- Create Initial Functions
@@ -30,18 +29,6 @@ CREATE SCHEMA results AUTHORIZATION a11ydata;
                         $function$
         ;
         -- End update_updated_at
-
--- SCHEMA:
-    -- TABLE:
-            -- Create Table
-
-            -- Create Indexes
-
-            -- Add Column Comments
-
-            -- Create Triggers
-
-
 
 
 -- SCHEMA:  targets
@@ -96,32 +83,6 @@ CREATE SCHEMA results AUTHORIZATION a11ydata;
         CREATE TRIGGER urls_updated_at BEFORE
             UPDATE ON targets.urls FOR EACH ROW EXECUTE FUNCTION update_updated_at();
 
-        -- CREATE TRIGGER update_discovery_crawl_id_trigger BEFORE
-        --         INSERT
-        --             ON
-        --             targets.urls FOR EACH ROW EXECUTE FUNCTION targets.update_discovery_crawl_id();
-
-        -- CREATE TRIGGER update_updated_at_trigger BEFORE
-        --         UPDATE
-        --             ON
-        --             targets.urls FOR EACH ROW EXECUTE FUNCTION targets.update_updated_at();
-
-        -- CREATE TRIGGER update_check_uppies AFTER
-        --         UPDATE
-        --             OF uppies_at ON
-        --             targets.urls FOR EACH ROW EXECUTE FUNCTION refs.insert_check_uppies();
-
-        -- CREATE TRIGGER set_objective_url_trigger AFTER
-        --         INSERT
-        --             ON
-        --             targets.urls FOR EACH ROW EXECUTE FUNCTION targets.set_objective_url();
-
-        -- CREATE TRIGGER set_domain_id_trigger AFTER
-        --         INSERT
-        --             ON
-        --             targets.urls FOR EACH ROW
-        --             WHEN ((new.domain_id IS NULL)) EXECUTE FUNCTION targets.update_domain_id();
-
 
     -- TABLE: targets.domains
         -- Create Table
@@ -152,20 +113,82 @@ CREATE SCHEMA results AUTHORIZATION a11ydata;
         -- Add table triggers
 
         CREATE TRIGGER domains_updated_at BEFORE
-            UPDATE ON targets.urls FOR EACH ROW EXECUTE FUNCTION update_updated_at();
+            UPDATE ON targets.domains FOR EACH ROW EXECUTE FUNCTION update_updated_at();
 
 
 
+-- SCHEMA:  axe
+    -- TABLE:   axe.scan_data
+        -- Create Table
+        CREATE TABLE axe.scan_data (
+            id bigserial NOT NULL,
+            engine_name varchar(20) NULL,
+            engine_version varchar(10) NULL,
+            orientation_angle varchar(5) NULL,
+            orientation_type varchar(25) NULL,
+            user_agent varchar(250) NULL,
+            window_height int4 NULL,
+            window_width int4 NULL,
+            reporter varchar(50) NULL,
+            runner_name varchar(50) NULL,
+            scanned_at timestamptz NULL,
+            url varchar NULL,
+            url_id int8 NOT NULL,
+            created_at timestamptz NOT NULL DEFAULT now(),
+            updated_at timestamptz NOT NULL DEFAULT now(),
+            CONSTRAINT scan_data_pkey PRIMARY KEY (id),
+            CONSTRAINT scan_data_fk_url_id FOREIGN KEY (url_id) REFERENCES targets.urls(id)
+        );
 
--- SCHEMA: axe
+        -- Create Indexes
+        CREATE INDEX scan_data_scanned_at_idx ON axe.scan_data USING btree (scanned_at);
+        CREATE INDEX scan_data_url_id_idx ON axe.scan_data USING btree (url_id);
+
+        -- Add Column Comments
+
+
+        -- Create Triggers
+        CREATE TRIGGER scan_data_updated_at BEFORE
+            UPDATE ON axe.scan_data FOR EACH ROW EXECUTE FUNCTION update_updated_at();
+
+
     -- TABLE:
-            -- Create Table
+        -- Create Table
+        CREATE TABLE axe.rules (
+            id bigserial NOT NULL,
+            scan_id int8 NULL,
+            rule_type varchar(20) NULL,
+            description varchar(250) NULL,
+            help varchar(250) NULL,
+            help_url varchar(250) NULL,
+            axe_id varchar(35) NULL,
+            impact varchar(25) NULL,
+            tags jsonb NULL,
+            nodes jsonb NULL,
+            created_at timestamptz NOT NULL DEFAULT now(),
+            CONSTRAINT rules_pkey PRIMARY KEY (id),
+            CONSTRAINT rules_scan_data_id_fkey FOREIGN KEY (scan_id) REFERENCES axe.scan_data(id)
+        );
 
-            -- Create Indexes
+        -- Create Indexes
+        CREATE INDEX axe_rules_tags_gin_idx ON axe.rules USING gin (tags);
+        CREATE INDEX rules_axe_id_idx ON axe.rules USING btree (axe_id);
+        CREATE INDEX rules_rule_type_idx ON axe.rules USING btree (rule_type);
+        CREATE INDEX rules_scan_id_idx ON axe.rules USING btree (scan_id);
+        CREATE INDEX rules_tags_gin_idx ON axe.rules USING gin (tags jsonb_path_ops);
 
-            -- Add Column Comments
+        -- Add Column Comments
 
-            -- Create Triggers
+        -- Create Triggers
+
+-- END a11ydata Database
 
 
 
+
+-- Create & Setup Grafana Database
+    CREATE DATABASE grafana;
+
+-- Create & Grant Users
+    CREATE USER grafananalytics WITH PASSWORD 'zdr567NXphswuZe';
+        GRANT ALL PRIVILEGES ON DATABASE grafana TO grafananalytics;
