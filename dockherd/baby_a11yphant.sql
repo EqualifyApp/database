@@ -113,7 +113,7 @@ CREATE SCHEMA results AUTHORIZATION a11ydata;
         CREATE TRIGGER urls_updated_at BEFORE
             UPDATE ON targets.urls FOR EACH ROW EXECUTE FUNCTION update_updated_at();
 
-
+-- END SCHEMA: targets
 
 -- SCHEMA:  axe
     -- TABLE:   axe.scan_data
@@ -150,7 +150,7 @@ CREATE SCHEMA results AUTHORIZATION a11ydata;
             UPDATE ON axe.scan_data FOR EACH ROW EXECUTE FUNCTION update_updated_at();
 
 
-    -- TABLE:
+    -- TABLE:   rules
         -- Create Table
         CREATE TABLE axe.rules (
             id bigserial NOT NULL,
@@ -178,6 +178,80 @@ CREATE SCHEMA results AUTHORIZATION a11ydata;
         -- Add Column Comments
 
         -- Create Triggers
+
+-- END SCHEMA: axe
+
+-- SCHEMA: results
+
+    -- TABLE:   scan_uppies
+        -- Create Table
+        CREATE TABLE results.scan_uppies (
+            id bigserial NOT NULL,
+            created_at timestamptz NOT NULL DEFAULT now(),
+            updated_at timestamptz NOT NULL DEFAULT now(),
+            url_id int4 NOT NULL,
+            status_code int4 NOT NULL,
+            content_type varchar NULL,
+            response_time float8 NULL,
+            charset varchar NULL,
+            page_last_modified timestamptz NULL,
+            content_length int8 NULL,
+            "server" varchar NULL,
+            x_powered_by varchar NULL,
+            x_content_type_options varchar NULL,
+            x_frame_options varchar NULL,
+            x_xss_protection varchar NULL,
+            content_security_policy varchar NULL,
+            strict_transport_security varchar NULL,
+            etag varchar NULL,
+            CONSTRAINT uppies_pk PRIMARY KEY (id),
+            CONSTRAINT scan_uppies_fk_status_code FOREIGN KEY (status_code) REFERENCES refs.uppies_codes(code),
+            CONSTRAINT scan_uppies_fk_url_id FOREIGN KEY (url_id) REFERENCES targets.urls(id)
+        );
+
+        -- Create Indexes
+        CREATE INDEX scan_uppies_created_at_idx ON results.scan_uppies USING btree (created_at);
+        CREATE INDEX scan_uppies_status_code_idx ON results.scan_uppies USING btree (status_code);
+        CREATE INDEX scan_uppies_url_id_idx ON results.scan_uppies USING btree (url_id);
+
+        -- Add Column Comments
+
+        -- Create Triggers
+        CREATE TRIGGER scan_uppies_updated_at BEFORE
+            UPDATE ON results.scan_uppies FOR EACH ROW EXECUTE FUNCTION update_updated_at();
+-- END SCHEMA: results
+
+-- SCHEMA: refs
+
+    -- TABLE: uppies_codes
+        -- Create Table
+        CREATE TABLE refs.uppies_codes (
+            id serial4 NOT NULL,
+            created_at timestamptz NOT NULL DEFAULT now(),
+            updated_at timestamptz NOT NULL DEFAULT now(),
+            code int4 NOT NULL,
+            description varchar NULL,
+            "name" varchar NULL,
+            "type" varchar NULL,
+            "group" varchar NULL,
+            CONSTRAINT uppies_codes_pk_id PRIMARY KEY (id),
+            CONSTRAINT uppies_codes_un_code UNIQUE (code)
+        );
+
+        -- Create Indexes
+
+        -- Add Column Comments
+        COMMENT ON COLUMN refs.uppies_codes.description IS 'What the code means';
+        COMMENT ON COLUMN refs.uppies_codes."name" IS 'Common name of code';
+        COMMENT ON COLUMN refs.uppies_codes."type" IS 'Type of status code';
+        COMMENT ON COLUMN refs.uppies_codes."group" IS 'Code Groupings';
+
+        -- Create Triggers
+        CREATE TRIGGER uppies_codes_updated_at BEFORE
+            UPDATE ON refs.uppies_codes FOR EACH ROW EXECUTE FUNCTION update_updated_at();
+
+
+-- END SCHEMA: refs
 
 
 -- END a11ydata Database

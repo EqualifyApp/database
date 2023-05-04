@@ -17,3 +17,4 @@ COPY child_a11yphant.sql /docker-entrypoint-initdb.d/02_import_data.sql
 # Copy data files over
 COPY start_urls.csv /docker-entrypoint-initdb.d/start_urls.csv
 COPY start_domains.csv /docker-entrypoint-initdb.d/start_domains.csv
+COPY ref_uppies_codes.csv /docker-entrypoint-initdb.d/ref_uppies_codes.csv
