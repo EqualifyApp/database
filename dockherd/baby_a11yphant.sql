@@ -66,15 +66,14 @@ CREATE SCHEMA results AUTHORIZATION a11ydata;
             source_url varchar NULL,
             sitemapped bool NOT NULL DEFAULT false,
             CONSTRAINT urls_pk PRIMARY KEY (id),
-            CONSTRAINT urls_un_url UNIQUE (url)
+            CONSTRAINT urls_un_url UNIQUE (url),
+            CONSTRAINT urls_fk FOREIGN KEY (domain_id) REFERENCES targets.domains(id)
         );
 
         -- Create Indexes
         CREATE INDEX urls_active_main_idx ON targets.urls USING btree (active_main);
-        -- CREATE INDEX urls_domain_id_idx ON targets.urls USING btree (domain_id);
+        CREATE INDEX urls_domain_id_idx ON targets.urls USING btree (domain_id);
         CREATE INDEX urls_is_objective_idx ON targets.urls USING btree (is_objective);
-        -- CREATE INDEX urls_queued_at_axe_idx ON targets.urls USING btree (queued_at_axe);
-        -- CREATE INDEX urls_uppies_at_idx ON targets.urls USING btree (uppies_at);
 
         -- Table Triggers
 
@@ -92,6 +91,7 @@ CREATE SCHEMA results AUTHORIZATION a11ydata;
             active bool NULL, -- Should we analyze this domain?
             org_id int4 NULL, -- Corresponding Entity ID
             CONSTRAINT domains_pk_id PRIMARY KEY (id)   -- Removed org_id foreign key
+            CONSTRAINT domains_un UNIQUE (domain)
         );
 
         -- Create Indexes
@@ -177,6 +177,19 @@ CREATE SCHEMA results AUTHORIZATION a11ydata;
         -- Add Column Comments
 
         -- Create Triggers
+
+-- Import Data
+    -- FROM: start_domains TO: targets.domains
+    COPY targets.domains(id, domain, active)
+    FROM '/start_domains.csv'
+    DELIMITER ','
+    CSV HEADER;
+
+    -- FROM: start_urls TO: targets.urls
+    COPY targets.urls(url, domain_id, is_objective)
+    FROM '/start_urls.csv'
+    DELIMITER ','
+    CSV HEADER;
 
 -- END a11ydata Database
 

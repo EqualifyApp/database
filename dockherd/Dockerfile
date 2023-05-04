@@ -12,6 +12,7 @@ ENV POSTGRES_PORT 5432
 # Copy the dump file to the container and restore the schema and functions
 COPY baby_a11yphant.sql /docker-entrypoint-initdb.d/
 
-
-# Mount as storage location: /var/lib/postgresql/data
+# Copy startup data over
+COPY start_urls.csv /docker-entrypoint-initdb.d/
+COPY start_domains.csv /docker-entrypoint-initdb.d/
 
