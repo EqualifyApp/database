@@ -33,6 +33,39 @@ CREATE SCHEMA results AUTHORIZATION a11ydata;
 
 -- SCHEMA:  targets
 
+    -- TABLE: targets.domains
+        -- Create Table
+        CREATE TABLE targets.domains (
+            id serial4 NOT NULL, -- Primary domain identifer
+            created_at timestamptz NOT NULL DEFAULT now(), -- When domain added
+            updated_at timestamptz NOT NULL DEFAULT now(), -- When row updated
+            "domain" varchar NOT NULL, -- Unique domain name
+            active bool NULL, -- Should we analyze this domain?
+            org_id int4 NULL, -- Corresponding Entity ID
+            CONSTRAINT domains_pk_id PRIMARY KEY (id)   -- Removed org_id foreign key
+            CONSTRAINT domains_un UNIQUE (domain)
+        );
+
+        -- Create Indexes
+        CREATE UNIQUE INDEX domains_domain_idx ON targets.domains USING btree (domain);
+        CREATE INDEX domains_org_id_idx ON targets.domains USING btree (org_id);
+
+        -- Add Column Comments
+
+        COMMENT ON COLUMN targets.domains.id IS 'Primary domain identifer';
+        COMMENT ON COLUMN targets.domains.created_at IS 'When domain added';
+        COMMENT ON COLUMN targets.domains.updated_at IS 'When row updated';
+        COMMENT ON COLUMN targets.domains."domain" IS 'Unique domain name';
+        COMMENT ON COLUMN targets.domains.active IS 'Should we analyze this domain?';
+        COMMENT ON COLUMN targets.domains.org_id IS 'Corresponding Entity ID';
+
+        -- Add table triggers
+
+        CREATE TRIGGER domains_updated_at BEFORE
+            UPDATE ON targets.domains FOR EACH ROW EXECUTE FUNCTION update_updated_at();
+
+
+
     -- TABLE:   targets.urls
         -- Create Table
         CREATE TABLE targets.urls (
@@ -79,38 +112,6 @@ CREATE SCHEMA results AUTHORIZATION a11ydata;
 
         CREATE TRIGGER urls_updated_at BEFORE
             UPDATE ON targets.urls FOR EACH ROW EXECUTE FUNCTION update_updated_at();
-
-
-    -- TABLE: targets.domains
-        -- Create Table
-        CREATE TABLE targets.domains (
-            id serial4 NOT NULL, -- Primary domain identifer
-            created_at timestamptz NOT NULL DEFAULT now(), -- When domain added
-            updated_at timestamptz NOT NULL DEFAULT now(), -- When row updated
-            "domain" varchar NOT NULL, -- Unique domain name
-            active bool NULL, -- Should we analyze this domain?
-            org_id int4 NULL, -- Corresponding Entity ID
-            CONSTRAINT domains_pk_id PRIMARY KEY (id)   -- Removed org_id foreign key
-            CONSTRAINT domains_un UNIQUE (domain)
-        );
-
-        -- Create Indexes
-        CREATE UNIQUE INDEX domains_domain_idx ON targets.domains USING btree (domain);
-        CREATE INDEX domains_org_id_idx ON targets.domains USING btree (org_id);
-
-        -- Add Column Comments
-
-        COMMENT ON COLUMN targets.domains.id IS 'Primary domain identifer';
-        COMMENT ON COLUMN targets.domains.created_at IS 'When domain added';
-        COMMENT ON COLUMN targets.domains.updated_at IS 'When row updated';
-        COMMENT ON COLUMN targets.domains."domain" IS 'Unique domain name';
-        COMMENT ON COLUMN targets.domains.active IS 'Should we analyze this domain?';
-        COMMENT ON COLUMN targets.domains.org_id IS 'Corresponding Entity ID';
-
-        -- Add table triggers
-
-        CREATE TRIGGER domains_updated_at BEFORE
-            UPDATE ON targets.domains FOR EACH ROW EXECUTE FUNCTION update_updated_at();
 
 
 
