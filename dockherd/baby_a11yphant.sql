@@ -67,8 +67,6 @@ CREATE SCHEMA results AUTHORIZATION a11ydata;
             sitemapped bool NOT NULL DEFAULT false,
             CONSTRAINT urls_pk PRIMARY KEY (id),
             CONSTRAINT urls_un_url UNIQUE (url),
-            -- CONSTRAINT urls_fk_domain FOREIGN KEY (domain_id) REFERENCES targets.domains(id),
-            -- CONSTRAINT urls_fk_uppies_code FOREIGN KEY (uppies_code) REFERENCES refs.uppies_codes(code)
         );
 
         -- Create Indexes
