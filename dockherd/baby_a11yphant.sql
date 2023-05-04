@@ -66,7 +66,7 @@ CREATE SCHEMA results AUTHORIZATION a11ydata;
             source_url varchar NULL,
             sitemapped bool NOT NULL DEFAULT false,
             CONSTRAINT urls_pk PRIMARY KEY (id),
-            CONSTRAINT urls_un_url UNIQUE (url),
+            CONSTRAINT urls_un_url UNIQUE (url)
         );
 
         -- Create Indexes
