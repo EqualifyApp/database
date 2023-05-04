@@ -31,6 +31,39 @@ CREATE SCHEMA results AUTHORIZATION a11ydata;
         -- End update_updated_at
 
 
+-- SCHEMA: refs
+
+    -- TABLE: uppies_codes
+        -- Create Table
+        CREATE TABLE refs.uppies_codes (
+            id serial4 NOT NULL,
+            created_at timestamptz NOT NULL DEFAULT now(),
+            updated_at timestamptz NOT NULL DEFAULT now(),
+            code int4 NOT NULL,
+            description varchar NULL,
+            "name" varchar NULL,
+            "type" varchar NULL,
+            "group" varchar NULL,
+            CONSTRAINT uppies_codes_pk_id PRIMARY KEY (id),
+            CONSTRAINT uppies_codes_un_code UNIQUE (code)
+        );
+
+        -- Create Indexes
+
+        -- Add Column Comments
+        COMMENT ON COLUMN refs.uppies_codes.description IS 'What the code means';
+        COMMENT ON COLUMN refs.uppies_codes."name" IS 'Common name of code';
+        COMMENT ON COLUMN refs.uppies_codes."type" IS 'Type of status code';
+        COMMENT ON COLUMN refs.uppies_codes."group" IS 'Code Groupings';
+
+        -- Create Triggers
+        CREATE TRIGGER uppies_codes_updated_at BEFORE
+            UPDATE ON refs.uppies_codes FOR EACH ROW EXECUTE FUNCTION update_updated_at();
+
+
+-- END SCHEMA: refs
+
+
 -- SCHEMA:  targets
 
     -- TABLE: targets.domains
@@ -181,6 +214,10 @@ CREATE SCHEMA results AUTHORIZATION a11ydata;
 
 -- END SCHEMA: axe
 
+
+
+
+
 -- SCHEMA: results
 
     -- TABLE:   scan_uppies
@@ -221,37 +258,7 @@ CREATE SCHEMA results AUTHORIZATION a11ydata;
             UPDATE ON results.scan_uppies FOR EACH ROW EXECUTE FUNCTION update_updated_at();
 -- END SCHEMA: results
 
--- SCHEMA: refs
 
-    -- TABLE: uppies_codes
-        -- Create Table
-        CREATE TABLE refs.uppies_codes (
-            id serial4 NOT NULL,
-            created_at timestamptz NOT NULL DEFAULT now(),
-            updated_at timestamptz NOT NULL DEFAULT now(),
-            code int4 NOT NULL,
-            description varchar NULL,
-            "name" varchar NULL,
-            "type" varchar NULL,
-            "group" varchar NULL,
-            CONSTRAINT uppies_codes_pk_id PRIMARY KEY (id),
-            CONSTRAINT uppies_codes_un_code UNIQUE (code)
-        );
-
-        -- Create Indexes
-
-        -- Add Column Comments
-        COMMENT ON COLUMN refs.uppies_codes.description IS 'What the code means';
-        COMMENT ON COLUMN refs.uppies_codes."name" IS 'Common name of code';
-        COMMENT ON COLUMN refs.uppies_codes."type" IS 'Type of status code';
-        COMMENT ON COLUMN refs.uppies_codes."group" IS 'Code Groupings';
-
-        -- Create Triggers
-        CREATE TRIGGER uppies_codes_updated_at BEFORE
-            UPDATE ON refs.uppies_codes FOR EACH ROW EXECUTE FUNCTION update_updated_at();
-
-
--- END SCHEMA: refs
 
 
 -- END a11ydata Database
