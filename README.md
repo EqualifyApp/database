@@ -1,5 +1,5 @@
 # A11yDatabase
-
+[![🏗️📤 Build and publish 🐳 images](https://github.com/EqualifyApp/database/actions/workflows/containerize.yml/badge.svg)](https://github.com/EqualifyApp/database/actions/workflows/containerize.yml)
 We've got a few things here
 
 - DBeaver collaboration files
