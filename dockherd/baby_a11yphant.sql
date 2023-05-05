@@ -266,19 +266,36 @@ GRANT SELECT ON ALL TABLES IN SCHEMA axe, targets, events, orgs, refs, results T
 
 
 -- Begin grafana database
--- Create & Setup Grafana Database
+-- Create the grafana database
 CREATE DATABASE grafana;
 
--- Create & Grant Users
+-- Create the grafananalytics user with the specified password
 CREATE USER grafananalytics WITH PASSWORD 'zdr567NXphswuZe';
+
+-- Grant all privileges on the grafana database to grafananalytics
 GRANT ALL PRIVILEGES ON DATABASE grafana TO grafananalytics;
 
--- Grant usage on schema public
-GRANT USAGE ON SCHEMA public TO grafananalytics;
+-- Connect to the grafana database
+\c grafana
 
--- Grant create on schema public
-GRANT CREATE ON SCHEMA public TO grafananalytics;
+-- Grant usage and create privileges on schema public to grafananalytics
+GRANT USAGE, CREATE ON SCHEMA public TO grafananalytics;
 
--- Alter default privileges
-ALTER DEFAULT PRIVILEGES FOR ROLE grafananalytics IN SCHEMA public GRANT ALL ON TABLES TO grafananalytics;
+-- Grant all privileges on all tables in schema public to grafananalytics
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO grafananalytics;
+
+-- Grant all privileges on all sequences in schema public to grafananalytics
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO grafananalytics;
+
+-- Grant all privileges on all functions in schema public to grafananalytics
+GRANT ALL PRIVILEGES ON ALL FUNCTIONS IN SCHEMA public TO grafananalytics;
+
+-- Alter default privileges for the grafananalytics user in schema public
+ALTER DEFAULT PRIVILEGES FOR ROLE grafananalytics IN SCHEMA public
+  GRANT ALL ON TABLES TO grafananalytics;
+ALTER DEFAULT PRIVILEGES FOR ROLE grafananalytics IN SCHEMA public
+  GRANT ALL ON SEQUENCES TO grafananalytics;
+ALTER DEFAULT PRIVILEGES FOR ROLE grafananalytics IN SCHEMA public
+  GRANT ALL ON FUNCTIONS TO grafananalytics;
+
 
