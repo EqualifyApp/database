@@ -258,16 +258,27 @@ CREATE SCHEMA results AUTHORIZATION a11ydata;
             UPDATE ON results.scan_uppies FOR EACH ROW EXECUTE FUNCTION update_updated_at();
 -- END SCHEMA: results
 
+GRANT SELECT ON ALL TABLES IN SCHEMA axe, targets, events, orgs, refs, results TO grafanareader;
 
 
 
 -- END a11ydata Database
 
--- Begin grafana database
 
+-- Begin grafana database
 -- Create & Setup Grafana Database
-    CREATE DATABASE grafana;
+CREATE DATABASE grafana;
 
 -- Create & Grant Users
-    CREATE USER grafananalytics WITH PASSWORD 'zdr567NXphswuZe';
-        GRANT ALL PRIVILEGES ON DATABASE grafana TO grafananalytics;
+CREATE USER grafananalytics WITH PASSWORD 'zdr567NXphswuZe';
+GRANT ALL PRIVILEGES ON DATABASE grafana TO grafananalytics;
+
+-- Grant usage on schema public
+GRANT USAGE ON SCHEMA public TO grafananalytics;
+
+-- Grant create on schema public
+GRANT CREATE ON SCHEMA public TO grafananalytics;
+
+-- Alter default privileges
+ALTER DEFAULT PRIVILEGES FOR ROLE grafananalytics IN SCHEMA public GRANT ALL ON TABLES TO grafananalytics;
+
