@@ -213,11 +213,6 @@ CREATE SCHEMA results AUTHORIZATION a11ydata;
         -- Create Triggers
 
 -- END SCHEMA: axe
-
-
-
-
-
 -- SCHEMA: results
 
     -- TABLE:   scan_uppies
@@ -260,13 +255,13 @@ CREATE SCHEMA results AUTHORIZATION a11ydata;
     -- TABLE:   crawl
         -- Create Table
         CREATE TABLE results.crawl (
-          id bigserial NOT NULL,
-          created_at timestamptz NOT NULL DEFAULT now(), -- When url was crawled
-          updated_at timestamptz NOT NULL DEFAULT now(), -- When this crawl was updated
-          url_id int8 NOT NULL, -- ID of url crawled
-          urls_found int4 NULL, -- Number of urls found in crawl
-          CONSTRAINT crawl_pk PRIMARY KEY (id),
-          CONSTRAINT crawl_fk FOREIGN KEY (url_id) REFERENCES targets.urls(id)
+            id bigserial NOT NULL,
+            created_at timestamptz NOT NULL DEFAULT now(), -- When url was crawled
+            updated_at timestamptz NOT NULL DEFAULT now(), -- When this crawl was updated
+            url_id int8 NOT NULL, -- ID of url crawled
+            urls_found int4 NULL, -- Number of urls found in crawl
+            CONSTRAINT crawl_pk PRIMARY KEY (id),
+            CONSTRAINT crawl_fk FOREIGN KEY (url_id) REFERENCES targets.urls(id)
         );
         -- Create Indexes
         CREATE INDEX crawl_url_id_idx ON results.crawl USING btree (url_id);
@@ -280,9 +275,7 @@ CREATE SCHEMA results AUTHORIZATION a11ydata;
 
         -- Create Triggers
         CREATE TRIGGER crawl_updated_at BEFORE
-        UPDATE
-            ON
-            results.crawl FOR EACH ROW EXECUTE FUNCTION update_updated_at();
+        UPDATE ON results.crawl FOR EACH ROW EXECUTE FUNCTION update_updated_at();
 
 -- END SCHEMA: results
 
