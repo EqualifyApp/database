@@ -280,7 +280,7 @@ CREATE SCHEMA results AUTHORIZATION a11ydata;
 
 -- END SCHEMA: results
 
-GRANT SELECT ON ALL TABLES IN SCHEMA axe, targets, events, orgs, refs, results TO grafanareader;
+
   -- TABLE: errors
     -- Create Table
         CREATE TABLE results.errors (
@@ -308,7 +308,7 @@ GRANT SELECT ON ALL TABLES IN SCHEMA axe, targets, events, orgs, refs, results T
         CREATE TRIGGER errors_updated_at BEFORE
         UPDATE ON results.errors FOR EACH ROW EXECUTE FUNCTION update_updated_at();
 
-
+GRANT SELECT ON ALL TABLES IN SCHEMA axe, targets, events, orgs, refs, results TO grafanareader;
 -- END a11ydata Database
 
     -- TABLE:
