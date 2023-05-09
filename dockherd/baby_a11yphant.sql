@@ -109,6 +109,7 @@ CREATE SCHEMA results AUTHORIZATION a11ydata;
             domain_id int4 NULL,
             is_objective bool NOT NULL DEFAULT false,
             active_main bool NOT NULL DEFAULT true,
+            errored bool NOT NULL DEFAULT FALSE,
             -- Scan: Tech
             active_scan_tech bool NOT NULL DEFAULT true,
             queued_at_tech timestamptz NULL,
@@ -252,7 +253,7 @@ CREATE SCHEMA results AUTHORIZATION a11ydata;
         CREATE TRIGGER scan_uppies_updated_at BEFORE
             UPDATE ON results.scan_uppies FOR EACH ROW EXECUTE FUNCTION update_updated_at();
 
-    -- TABLE:   crawl
+    -- TABLE: crawl
         -- Create Table
         CREATE TABLE results.crawl (
             id bigserial NOT NULL,
@@ -280,7 +281,32 @@ CREATE SCHEMA results AUTHORIZATION a11ydata;
 -- END SCHEMA: results
 
 GRANT SELECT ON ALL TABLES IN SCHEMA axe, targets, events, orgs, refs, results TO grafanareader;
+  -- TABLE: errors
+    -- Create Table
+        CREATE TABLE results.errors (
+          id bigserial NOT NULL,
+          updated_at timestamptz NOT NULL DEFAULT now(), -- When specific error last seen
+          created_at timestamptz NOT NULL DEFAULT now(),
+          url_id int8 NOT NULL, -- id of URL which generated error
+          queue varchar NOT NULL, -- Name of queue which generated error
+          error_message varchar NULL, -- Error message generated
+          CONSTRAINT errors_pk PRIMARY KEY (id),
+          CONSTRAINT errors_un_trifecta UNIQUE (url_id, queue, error_message),
+          CONSTRAINT errors_fk_url_id FOREIGN KEY (url_id) REFERENCES targets.urls(id)
+        );
+    -- Create Indexes
+        CREATE INDEX errors_url_id_idx ON results.errors USING btree (url_id, updated_at DESC);
 
+    -- Add Column Comments
+        COMMENT ON TABLE results.errors IS 'errors';
+        COMMENT ON COLUMN results.errors.updated_at IS 'When specific error last seen';
+        COMMENT ON COLUMN results.errors.url_id IS 'id of URL which generated error';
+        COMMENT ON COLUMN results.errors.queue IS 'Name of queue which generated error';
+        COMMENT ON COLUMN results.errors.error_message IS 'Error message generated';
+
+    -- Create Triggers
+        CREATE TRIGGER errors_updated_at BEFORE
+        UPDATE ON results.errors FOR EACH ROW EXECUTE FUNCTION update_updated_at();
 
 
 -- END a11ydata Database
