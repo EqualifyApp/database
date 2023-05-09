@@ -258,31 +258,31 @@ CREATE SCHEMA results AUTHORIZATION a11ydata;
             UPDATE ON results.scan_uppies FOR EACH ROW EXECUTE FUNCTION update_updated_at();
 
     -- TABLE:   crawl
-      -- Create Table
-      CREATE TABLE results.crawl (
-        id bigserial NOT NULL,
-        created_at timestamptz NOT NULL DEFAULT now(), -- When url was crawled
-        updated_at timestamptz NOT NULL DEFAULT now(), -- When this crawl was updated
-        url_id int8 NOT NULL, -- ID of url crawled
-        urls_found int4 NULL, -- Number of urls found in crawl
-        CONSTRAINT crawl_pk PRIMARY KEY (id),
-        CONSTRAINT crawl_fk FOREIGN KEY (url_id) REFERENCES targets.urls(id)
-      );
-      -- Create Indexes
-      CREATE INDEX crawl_url_id_idx ON results.crawl USING btree (url_id);
+        -- Create Table
+        CREATE TABLE results.crawl (
+          id bigserial NOT NULL,
+          created_at timestamptz NOT NULL DEFAULT now(), -- When url was crawled
+          updated_at timestamptz NOT NULL DEFAULT now(), -- When this crawl was updated
+          url_id int8 NOT NULL, -- ID of url crawled
+          urls_found int4 NULL, -- Number of urls found in crawl
+          CONSTRAINT crawl_pk PRIMARY KEY (id),
+          CONSTRAINT crawl_fk FOREIGN KEY (url_id) REFERENCES targets.urls(id)
+        );
+        -- Create Indexes
+        CREATE INDEX crawl_url_id_idx ON results.crawl USING btree (url_id);
 
-      -- Add Comments
-      COMMENT ON TABLE results.crawl IS 'Main URL Crawler';
-      COMMENT ON COLUMN results.crawl.created_at IS 'When url was crawled';
-      COMMENT ON COLUMN results.crawl.updated_at IS 'When this crawl was updated';
-      COMMENT ON COLUMN results.crawl.url_id IS 'ID of url crawled';
-      COMMENT ON COLUMN results.crawl.urls_found IS 'Number of urls found in crawl';
+        -- Add Comments
+        COMMENT ON TABLE results.crawl IS 'Main URL Crawler';
+        COMMENT ON COLUMN results.crawl.created_at IS 'When url was crawled';
+        COMMENT ON COLUMN results.crawl.updated_at IS 'When this crawl was updated';
+        COMMENT ON COLUMN results.crawl.url_id IS 'ID of url crawled';
+        COMMENT ON COLUMN results.crawl.urls_found IS 'Number of urls found in crawl';
 
-      -- Create Triggers
-      CREATE TRIGGER crawl_updated_at BEFORE
-      UPDATE
-          ON
-          results.crawl FOR EACH ROW EXECUTE FUNCTION update_updated_at();
+        -- Create Triggers
+        CREATE TRIGGER crawl_updated_at BEFORE
+        UPDATE
+            ON
+            results.crawl FOR EACH ROW EXECUTE FUNCTION update_updated_at();
 
 -- END SCHEMA: results
 
