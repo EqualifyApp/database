@@ -63,20 +63,52 @@ CREATE SCHEMA results AUTHORIZATION a11ydata;
 
 -- END SCHEMA: refs
 
+-- SCHEMA: orgs
+    -- TABLE: orgs.entities
+      -- Create Table
+      CREATE TABLE orgs.entities (
+        id serial4 NOT NULL,
+        created_at timestamptz NOT NULL DEFAULT now(),
+        updated_at timestamptz NOT NULL DEFAULT now(),
+        "name" varchar NULL,
+        "type" varchar NULL, -- What type of org is this? From refs.org_types
+        acronym varchar NULL,
+        active bool NOT NULL DEFAULT false, -- Is this entity active?
+        CONSTRAINT entities_un UNIQUE (name),
+        CONSTRAINT entities_pk_id PRIMARY KEY (id)
+      );
+
+        -- Create Indexes
+        CREATE INDEX entities_acronym_idx ON orgs.entities USING btree (acronym);
+        CREATE INDEX entities_name_idx ON orgs.entities USING btree (name);
+
+        -- Add Column Comments
+        COMMENT ON TABLE orgs.entities IS 'Represents the various federal agencies in the US government.';
+        COMMENT ON COLUMN orgs.entities."type" IS 'What type of org is this? From refs.org_types';
+        COMMENT ON COLUMN orgs.entities.active IS 'Is this entity active?';
+
+        -- Create Triggers
+        CREATE TRIGGER entities_updated_at BEFORE
+        UPDATE ON orgs.entities FOR EACH ROW EXECUTE FUNCTION update_updated_at();
+
+-- END SCHEMA: orgs
+
+
 
 -- SCHEMA:  targets
 
     -- TABLE: targets.domains
         -- Create Table
         CREATE TABLE targets.domains (
-            id serial4 NOT NULL, -- Primary domain identifer
-            created_at timestamptz NOT NULL DEFAULT now(), -- When domain added
-            updated_at timestamptz NOT NULL DEFAULT now(), -- When row updated
-            "domain" varchar NOT NULL, -- Unique domain name
-            active bool NULL, -- Should we analyze this domain?
-            org_id int4 NULL, -- Corresponding Entity ID
-            CONSTRAINT domains_pk_id PRIMARY KEY (id),
-            CONSTRAINT domains_un UNIQUE (domain)
+          id serial4 NOT NULL, -- Primary domain identifer
+          created_at timestamptz NOT NULL DEFAULT now(), -- When domain added
+          updated_at timestamptz NOT NULL DEFAULT now(), -- When row updated
+          "domain" varchar NOT NULL, -- Unique domain name
+          active bool NULL, -- Should we analyze this domain?
+          org_id int4 NULL, -- Corresponding Entity ID
+          CONSTRAINT domains_pk_id PRIMARY KEY (id),
+          CONSTRAINT domains_un UNIQUE (domain),
+          CONSTRAINT domains_fk FOREIGN KEY (org_id) REFERENCES orgs.entities(id)
         );
 
         -- Create Indexes
